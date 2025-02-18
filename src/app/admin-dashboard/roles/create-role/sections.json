@@ -1,0 +1,30 @@
+[
+  {
+    "label": "Add Sector",
+    "value": "addSector"
+  },
+  {
+    "label": "Add Department",
+    "value": "addDepartment"
+  },
+  {
+    "label": "Add Act",
+    "value": "addAct"
+  },
+  {
+    "label": "Add Departments to Sector",
+    "value": "addDepartmentsToSector"
+  },
+  {
+    "label": "Add Acts to Department",
+    "value": "addActsToDepartment"
+  },
+  {
+    "label": "Create Role",
+    "value": "createRole"
+  },
+  {
+    "label": "Create Employee",
+    "value": "createEmployee"
+  }
+]
