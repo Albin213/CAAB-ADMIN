@@ -174,7 +174,9 @@ function CreateRole() {
   const [errorRoleName, setErrorRoleName] = useState(false);
   const [errorSections, setErrorSections] = useState(false);
 
-  const token = localStorage.getItem("token");
+  const getToken = () => {
+    return localStorage.getItem("token");
+  };
 
 
   //Updating allowed Routes
@@ -239,6 +241,7 @@ function CreateRole() {
       console.log("Payload:", payload);
       // Add API call or any submission logic here
       try {
+        const token = getToken()
         const response = await axios.post(
           `${process.env.NEXT_PUBLIC_API_URL}/admin/createRole`,
           {
