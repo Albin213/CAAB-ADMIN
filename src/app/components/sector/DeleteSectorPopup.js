@@ -8,11 +8,23 @@ function DeleteSectorPopup({
   setSectorTableRenderToggle,
 }) {
   console.log(selectedSectorId);
+  // Function to get the token from localStorage
+  const getToken = () => {
+    return localStorage.getItem("token");
+  };
+
 
   async function handleDeleteSector() {
     try {
+      const token = getToken();
+
       const response = await axios.delete(
-        `${process.env.NEXT_PUBLIC_API_URL}/admin/deleteBusinessType/${selectedSectorId}`
+        `${process.env.NEXT_PUBLIC_API_URL}/admin/deleteBusinessType/${selectedSectorId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
       );
       console.log(response);
       alert(response.data.message);

@@ -68,7 +68,7 @@ function RolesTable({
           </td>
         </tr>
 
-        <tr className="min-h-10 bg-white border-[#C0C7D5] border-b-[1px]">
+        {/* <tr className="min-h-10 bg-white border-[#C0C7D5] border-b-[1px]">
           <td className="px-4 py-2">2</td>
           <td className="px-4 py-2">Marketing Agent</td>
           <td className="px-4 py-2">
@@ -86,7 +86,7 @@ function RolesTable({
               Edit
             </span>
           </td>
-        </tr>
+        </tr> */}
       </tbody>
     </table>
   );

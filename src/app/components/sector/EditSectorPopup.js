@@ -18,6 +18,11 @@ function EditSectorPopup({
   const [isBtnDisabled, setIsBtnDisabled] = useState(false);
   const [isInputEmpty, setIsInputEmpty] = useState(false);
 
+   // Function to get the token from localStorage
+   const getToken = () => {
+    return localStorage.getItem("token");
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       setDepartmentList(departments);
@@ -29,10 +34,17 @@ function EditSectorPopup({
   }, []);
 
   useEffect(() => {
+    const token = getToken();
+
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `${process.env.NEXT_PUBLIC_API_URL}/admin/getBusinessTypeById/${selectedSectorId}`
+          `${process.env.NEXT_PUBLIC_API_URL}/admin/getBusinessTypeById/${selectedSectorId}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
         );
 
         console.log(response);
@@ -111,12 +123,17 @@ function EditSectorPopup({
         console.log(newSectorName, newSelectedDepartments);
 
         // Edit Sector API call
+        const token = getToken();
 
         const response = await axios.put(
           `${process.env.NEXT_PUBLIC_API_URL}/admin/updateBusinessType/${selectedSectorId}`,
           {
             business_type: newSectorName,
             department_name: newSelectedDepartments,
+          },{
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
           }
         );
         console.log(response);

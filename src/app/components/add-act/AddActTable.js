@@ -198,12 +198,22 @@ function AddActTable({ tableRenderToggle }) {
   const [editData, setEditData] = useState(null); // To store data for editing
   const [isEditPopupOpen, setIsEditPopupOpen] = useState(false); // Popup visibility state
 
+  const getToken = () => {
+    return localStorage.getItem("token");
+  };
+
   // Fetch the list of laws
   useEffect(() => {
     const fetchData = async () => {
       try {
+        const token = getToken();
         const response = await axios.get(
-          `${process.env.NEXT_PUBLIC_API_URL}/admin/listlaws`
+          `${process.env.NEXT_PUBLIC_API_URL}/admin/listlaws`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
         );
         console.log(response);
         
@@ -223,8 +233,15 @@ function AddActTable({ tableRenderToggle }) {
     if (!confirmDelete) return;
 
     try {
+      const token = getToken();
+
       await axios.delete(
-        `${process.env.NEXT_PUBLIC_API_URL}/admin/deleteLaw/${id}`
+        `${process.env.NEXT_PUBLIC_API_URL}/admin/deleteLaw/${id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
       );
       alert("Law deleted successfully.");
       setLawsList((prevList) => prevList.filter((law) => law.id !== id)); // Update table locally
@@ -247,9 +264,16 @@ function AddActTable({ tableRenderToggle }) {
     if (!editData) return;
 
     try {
+      const token = getToken();
+
       await axios.put(
         `${process.env.NEXT_PUBLIC_API_URL}/admin/updateLaw/${editData.id}`,
-        editData
+        editData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
       );
       alert("Law updated successfully.");
       setIsEditPopupOpen(false); // Close the popup

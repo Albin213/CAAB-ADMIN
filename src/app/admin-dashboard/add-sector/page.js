@@ -21,11 +21,25 @@ function AddSector() {
   const [isDeleteSectorPopupOpen, setIsDeleteSectorPopupOpen] = useState(false);
   const [isEditSectorPopupOpen, setIsEditSectorPopupOpen] = useState(false);
 
+
+  // Function to get the token from localStorage
+  const getToken = () => {
+    return localStorage.getItem("token");
+  };
+
+
   useEffect(() => {
     const fetchData = async () => {
       try {
+        const token = getToken();
+
         const response = await axios.get(
-          `${process.env.NEXT_PUBLIC_API_URL}/admin/departments`
+          `${process.env.NEXT_PUBLIC_API_URL}/admin/departments`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
         );
 
         console.log(response);
@@ -93,12 +107,18 @@ function AddSector() {
         setIsInputEmpty(false);
 
         // Add Sector API call
+        const token = getToken();
 
         const response = await axios.post(
           `${process.env.NEXT_PUBLIC_API_URL}/admin/addBusinessType`,
           {
             business_type: sectorName,
             department_name: selectedDepartments,
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
           }
         );
         console.log(response);
@@ -117,13 +137,13 @@ function AddSector() {
     }
   }
 
-  if (isLoading) {
-    <div>
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>;
-  }
+  // if (isLoading) {
+  //  return <div>
+  //     <div></div>
+  //     <div></div>
+  //     <div></div>
+  //   </div>;
+  // }
 
   return (
     <div className="w-full flex flex-col gap-10">

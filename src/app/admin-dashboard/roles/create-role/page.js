@@ -174,6 +174,9 @@ function CreateRole() {
   const [errorRoleName, setErrorRoleName] = useState(false);
   const [errorSections, setErrorSections] = useState(false);
 
+  const token = localStorage.getItem("token");
+
+
   //Updating allowed Routes
   function updateRoutes(sections) {
     const newRoutes = sections.flatMap(
@@ -210,7 +213,7 @@ function CreateRole() {
         setSelectAll(true); // Check "Select All" if all are selected
       }
     }
-    setSelectedSections(updatedSections);
+    setSelectedSections(updatedSections); 
     updateRoutes(updatedSections); //update allowed routes
   }
 
@@ -242,6 +245,8 @@ function CreateRole() {
             role_name: roleName,
             access: selectedSections,
             allowed_routes: allowedRoutes,
+          },{
+            headers: { Authorization: `Bearer ${token}` },
           }
         );
         console.log(response);

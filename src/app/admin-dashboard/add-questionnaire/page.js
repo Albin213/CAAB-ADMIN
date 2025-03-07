@@ -332,6 +332,10 @@ function Page() {
       },
     ],
   });
+
+  const getToken = () => {
+    return localStorage.getItem("token");
+  };
   const [renderQuestionnaireTable, setRenderQuestionnaireTable] = useState(false);
 
   // Handle section change
@@ -392,11 +396,17 @@ function Page() {
     }
 
     try {
+      const token = getToken();
       await axios.post(
         `${process.env.NEXT_PUBLIC_API_URL}/admin/addQuestions`,
         {
           section,
           questionsList,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         }
       );
       alert("Questions added successfully.");
@@ -417,10 +427,17 @@ function Page() {
   };
 
   useEffect(() => {
+    const token = getToken();
+
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `${process.env.NEXT_PUBLIC_API_URL}/admin/listSections`
+          `${process.env.NEXT_PUBLIC_API_URL}/admin/listSections`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
         );
         console.log("Fetched sections:", response.data);
         setSections(response.data);

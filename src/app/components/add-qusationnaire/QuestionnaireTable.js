@@ -85,12 +85,23 @@ import axios from "axios";
 function QuestionnaireTable({ renderQuestionnaireTable, setRenderQuestionnaireTable }) {
   const [questionsList, setQuestionsList] = useState([]);
 
+  const getToken = () => {
+    return localStorage.getItem("token");
+  };
+
   // Fetch Questions List
   useEffect(() => {
     const fetchData = async () => {
       try {
+        const token = getToken();
+
         const response = await axios.get(
-          `${process.env.NEXT_PUBLIC_API_URL}/admin/listQuestions`
+          `${process.env.NEXT_PUBLIC_API_URL}/admin/listQuestions`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
         );
         console.log(response.data);
 
@@ -110,7 +121,15 @@ function QuestionnaireTable({ renderQuestionnaireTable, setRenderQuestionnaireTa
     if (!confirmDelete) return;
 
     try {
-      await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/admin/removeQuestions/${id}`);
+      const token = getToken();
+
+      await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/admin/removeQuestions/${id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       alert("Question deleted successfully!");
 
       // Refresh the questions list

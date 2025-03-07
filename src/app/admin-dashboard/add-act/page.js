@@ -7,6 +7,10 @@ import AddActTable from "@/app/components/add-act/AddActTable";
 function page() {
   const [departments, setDepartments] = useState([]);
    const [tableRenderToggle, setTableRenderToggle] = useState(false);
+   // Function to get the token from localStorage
+  const getToken = () => {
+    return localStorage.getItem("token");
+  };
     const [newLaw, setNewLaw] = useState({
         departmentName: "",
         law: "",
@@ -32,8 +36,14 @@ function page() {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        const token = getToken();
         const response = await axios.get(
-          `${process.env.NEXT_PUBLIC_API_URL}/admin/departments`
+          `${process.env.NEXT_PUBLIC_API_URL}/admin/departments`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
         );
 
         console.log(response);
@@ -81,6 +91,7 @@ function page() {
     } else {
       try {
         // Add Sector API call
+        const token = getToken();
 
         const response = await axios.post(
           `${process.env.NEXT_PUBLIC_API_URL}/admin/addLaw`,
@@ -92,6 +103,10 @@ function page() {
             penalty_amount : penaltyAmount,
             due_date: dueDate,
             alert_date: alertDate,
+          },{
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
           }
         );
         console.log(response);
