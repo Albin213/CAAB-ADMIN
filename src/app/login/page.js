@@ -167,7 +167,7 @@ function LoginPage() {
     setLoading(true);
     try {
       const response = await axios.post(
-        'http://192.168.1.59:5000/adminLogin',
+        'http://caabscore.com/api/adminLogin',
         user,
         {
           headers: { 'Content-Type': 'application/json' },
