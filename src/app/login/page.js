@@ -167,7 +167,7 @@ function LoginPage() {
     setLoading(true);
     try {
       const response = await axios.post(
-        'http://caabscore.com/api/adminLogin',
+        'https://caabscore.com/api/adminLogin',
         user,
         {
           headers: { 'Content-Type': 'application/json' },
