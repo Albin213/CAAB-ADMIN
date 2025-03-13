@@ -82,7 +82,7 @@ function Sidebar() {
 
         
 
-          <Link href="/admin-dashboard/employee-category">
+          <Link href="">
             <p
               className={`text-[#F8F9FF] text-[14px] font-semibold py-2 px-6 ps-14 flex items-center gap-2 hover:text-white hover:rounded-lg  ${
                 pathname === "/admin-dashboard/employee-category"
