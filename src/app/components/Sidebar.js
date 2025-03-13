@@ -38,7 +38,7 @@ function Sidebar() {
             </p>
           </Link>
 
-          <Link href="/admin-dashboard/generate-report">
+          <Link href="">
             <p
               className={`text-[#F8F9FF] text-[14px] font-semibold py-2 px-6 ps-14 flex items-center gap-2 hover:text-white hover:rounded-lg  ${
                 pathname === "/admin-dashboard/generate-report"
@@ -106,7 +106,7 @@ function Sidebar() {
             </p>
           </Link>
 
-          <Link href="/admin-dashboard/add-depts-to-sector">
+          <Link href="">
             <p
               className={`text-[#F8F9FF] text-[14px] font-semibold py-2 px-6 ps-14 flex items-center gap-2 hover:text-white hover:rounded-lg ${
                 pathname === "/admin-dashboard/add-depts-to-sector"
@@ -118,7 +118,7 @@ function Sidebar() {
             </p>
           </Link>
 
-          <Link href="/admin-dashboard/add-acts-to-depts">
+          <Link href="">
             <p
               className={`text-[#F8F9FF] text-[14px] font-semibold py-2 px-6 ps-14 flex items-center gap-2 hover:text-white hover:rounded-lg ${
                 pathname === "/admin-dashboard/add-acts-to-depts"
@@ -149,7 +149,7 @@ function Sidebar() {
           <h1 className="text-[#82B0FF] text-[14px] font-bold px-6 pt-10 pb-4">
             MANAGE EMPLOYEE
           </h1>
-          <Link href="/admin-dashboard/roles">
+          <Link href="">
             <p
               className={`text-[#F8F9FF] text-[14px] font-semibold py-2 px-6 ps-14 flex items-center gap-2 hover:text-white hover:rounded-lg  ${
                 pathname.includes("/admin-dashboard/roles")
@@ -161,7 +161,7 @@ function Sidebar() {
             </p>
           </Link>
 
-          <Link href="/admin-dashboard/employees">
+          <Link href="">
             <p
               className={`text-[#F8F9FF] text-[14px] font-semibold py-2 px-6 ps-14 flex items-center gap-2 hover:text-white hover:rounded-lg  ${
                 pathname.includes("/admin-dashboard/employees")
